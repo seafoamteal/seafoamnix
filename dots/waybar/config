@@ -1,0 +1,51 @@
+[
+  {
+    "battery": {
+      "format": "{capacity}% {icon}",
+      "format-icons": [
+        "!",
+        "▁",
+        "▃",
+        "▅",
+        "█"
+      ],
+      "states": {
+        "critical": 15,
+        "warning": 25
+      }
+    },
+    "clock": {
+      "format": "{:%b %d %H:%M}",
+      "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+    "height": 32,
+    "layer": "top",
+    "modules-center": [
+      "clock"
+    ],
+    "modules-left": [
+      "niri/workspaces"
+    ],
+    "modules-right": [
+      "wireplumber",
+      "network",
+      "battery"
+    ],
+    "network": {
+      "format-disconnected": "No WiFi",
+      "format-wifi": "{essid}",
+      "tooltip-format": "Signal: {signalStrength}%"
+    },
+    "position": "top",
+    "wireplumber": {
+      "format": "{volume}% {icon}",
+      "format-icons": [
+        "♪",
+        "♫",
+        "♬"
+      ],
+      "format-muted": "∅",
+      "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+    }
+  }
+]

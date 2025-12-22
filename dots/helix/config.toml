@@ -1,0 +1,20 @@
+theme = "kanagawa"
+
+[editor]
+line-number = "relative"
+clipboard-provider = "wayland"
+cursorline = true
+rulers = [80, 120]
+
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+# [editor.lsp]
+# display-inlay-hints = true
+
+[keys.normal]
+# Print the current line's git blame information to the statusline.
+space.B = ":echo %sh{git blame -L %{cursor_line},+1 %{buffer_name}}"
