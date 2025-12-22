@@ -1,6 +1,6 @@
 {...}: {
   programs.delta = {
     enable = true;
-    enableFishIntegration = true;
+    enableGitIntegration = true;
   };
 }

@@ -1,16 +1,11 @@
-{
-  pkgs,
-  nixos-hardware,
-  ...
-}: {
+{...}: {
   imports = [
     ./hardware-configuration.nix
+    ../../modules/nixos
     ../../modules/nixos/logins/gdm.nix
     ../../modules/nixos/desktops/niri.nix
     ../../modules/nixos/networking/tailscale.nix
     ../../modules/nixos/networking/kdeconnect.nix
-
-    nixos-hardware.nixosModules.dell-inspiron-14-5420
   ];
 
   boot = {
@@ -85,15 +80,6 @@
 
   programs.dconf = {
     enable = true;
-    settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
-  };
-
-  home.pointerCursor = {
-    name = "Adwaita";
-    package = pkgs.adwaita-icon-theme;
-    size = 24;
-    x11.enable = true;
-    gtk.enable = true;
   };
 
   services.power-profiles-daemon.enable = false;
