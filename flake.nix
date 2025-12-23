@@ -27,12 +27,14 @@
   } @ inputs: let
     lib = nixpkgs.lib;
     createSystem = {
+      system,
       host,
       user,
       platform,
       hardwareModules,
     }:
       lib.nixosSystem {
+        system = system;
         specialArgs = {inherit (inputs) self;};
         modules =
           [
@@ -52,6 +54,7 @@
   in {
     nixosConfigurations = {
       seafoam = createSystem {
+        system = "x86_64-linux";
         host = "seafoam";
         user = "hari";
         platform = "pc";
@@ -61,6 +64,7 @@
       };
 
       cerulean = createSystem {
+        system = "x86_64-linux";
         host = "cerulean";
         user = "hari";
         platform = "server";
