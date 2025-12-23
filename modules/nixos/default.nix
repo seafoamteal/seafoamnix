@@ -1,5 +1,7 @@
 {pkgs, ...}: {
-  imports = [];
+  imports = [
+    ./networking/tailscale.nix
+  ];
 
   nix = {
     settings.experimental-features = [

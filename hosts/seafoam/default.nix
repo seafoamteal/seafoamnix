@@ -4,7 +4,6 @@
     ../../modules/nixos
     ../../modules/nixos/logins/gdm.nix
     ../../modules/nixos/desktops/niri.nix
-    ../../modules/nixos/networking/tailscale.nix
     ../../modules/nixos/networking/kdeconnect.nix
   ];
 
