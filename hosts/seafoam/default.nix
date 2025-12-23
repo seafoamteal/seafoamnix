@@ -101,5 +101,7 @@
     };
   };
 
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
   system.stateVersion = "25.05"; # Do you remember the comment?
 }
