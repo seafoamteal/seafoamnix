@@ -59,6 +59,13 @@
           nixos-hardware.nixosModules.dell-inspiron-14-5420
         ];
       };
+
+      cerulean = createSystem {
+        host = "cerulean";
+        user = "hari";
+        platform = "server";
+        hardwareModules = [];
+      };
     };
   };
 }
