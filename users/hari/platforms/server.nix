@@ -9,4 +9,5 @@
 
   home.username = "hari";
   home.homeDirectory = "/home/hari";
+  home.stateVersion = "25.05";
 }
