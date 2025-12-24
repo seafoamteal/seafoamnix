@@ -7,6 +7,7 @@
     brightnessctl
     playerctl
     xwayland-satellite
+    nautilus
   ];
 
   programs.swaylock.enable = true;
