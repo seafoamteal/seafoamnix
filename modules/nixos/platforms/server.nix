@@ -25,7 +25,8 @@
   networking = {
     networkmanager.enable = true;
     firewall = {
-      allowedTCPPorts = [22];
+      allowedTCPPorts = [80 443];
+      trustedInterfaces = ["tailscale0"];
     };
   };
 
