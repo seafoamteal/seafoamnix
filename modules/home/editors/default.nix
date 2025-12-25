@@ -5,5 +5,6 @@
     ./obsidian.nix
     ./standardnotes.nix
     ./vim.nix
+    ./emacs.nix
   ];
 }
