@@ -1,4 +1,9 @@
-{...}: {
+{
+  pkgs,
+  config,
+  env,
+  ...
+}: {
   imports = [
     ./disko-configuration.nix
     ./hardware-configuration.nix
@@ -14,6 +19,35 @@
         device = "/dev/sda";
         efiSupport = true;
         efiInstallAsRemovable = true;
+      };
+    };
+  };
+
+  age.secrets = {
+    cf_api_token_hari_pm_dns.file = ../../secrets/cf_api_token_hari_pm_dns.age;
+  };
+
+  systemd.services.caddy = {
+    serviceConfig = {
+      EnvironmentFile = config.age.secrets.cf_api_token_hari_pm_dns.path;
+    };
+  };
+
+  services.caddy = {
+    enable = true;
+    package = pkgs.caddy.withPlugins {
+      plugins = ["github.com/caddy-dns/cloudflare@v0.2.2"];
+      hash = "sha256-ea8PC/+SlPRdEVVF/I3c1CBprlVp1nrumKM5cMwJJ3U=";
+    };
+    globalConfig = ''
+      acme_dns cloudflare {env.CF_API_TOKEN}
+    '';
+
+    virtualHosts = {
+      "hari.pm" = {
+        extraConfig = ''
+          respond "Hi, Hari!" 200
+        '';
       };
     };
   };
