@@ -12,6 +12,13 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
+    agenix.url = "github:ryantm/agenix";
+
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # stylix = {
     #   url = "github:nix-community/stylix";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -24,6 +31,8 @@
     nixpkgs,
     home-manager,
     nixos-hardware,
+    agenix,
+    disko,
   } @ inputs: let
     lib = nixpkgs.lib;
     createSystem = {
@@ -31,7 +40,7 @@
       host,
       user,
       platform,
-      hardwareModules,
+      optionalModules,
     }:
       lib.nixosSystem {
         system = system;
@@ -49,7 +58,7 @@
               home-manager.users.${user} = import ./users/${user}/platforms/${platform}.nix;
             }
           ]
-          ++ hardwareModules;
+          ++ optionalModules;
       };
   in {
     nixosConfigurations = {
@@ -58,7 +67,7 @@
         host = "seafoam";
         user = "hari";
         platform = "pc";
-        hardwareModules = [
+        optionalModules = [
           nixos-hardware.nixosModules.dell-inspiron-14-5420
         ];
       };
@@ -68,7 +77,17 @@
         host = "cerulean";
         user = "hari";
         platform = "server";
-        hardwareModules = [];
+      };
+
+      verdigris = createSystem {
+        system = "x86_64-linux";
+        host = "verdigris";
+        user = "hari";
+        platform = "server";
+        optionalModules = [
+          disko.nixosModules.disko
+          agenix.nixosModules.default
+        ];
       };
     };
   };

@@ -6,6 +6,15 @@
     ../../modules/nixos/services/caddy.nix
   ];
 
+  boot = {
+    loader = {
+      grub = {
+        enable = true;
+        device = "/dev/sda";
+      };
+    };
+  };
+
   networking.hostName = "cerulean";
   time.timeZone = "Europe/Berlin";
   system.stateVersion = "25.05";
