@@ -15,11 +15,17 @@
     };
   };
 
-  networking.hostName = "cerulean";
+  networking = {
+    hostName = "cerulean";
+    networkmanager.enable = true;
+    firewall = {
+      trustedInterfaces = ["tailscale0"];
+      firewall.allowedTCPPorts = [80 443];
+    };
+  };
+
   time.timeZone = "Europe/Berlin";
   system.stateVersion = "25.05";
-
-  networking.firewall.allowedTCPPorts = [80 443];
 
   services.caddy = {
     virtualHosts = {

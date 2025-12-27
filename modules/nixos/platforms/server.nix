@@ -3,13 +3,6 @@
     ../networking/openssh.nix
   ];
 
-  networking = {
-    networkmanager.enable = true;
-    firewall = {
-      trustedInterfaces = ["tailscale0"];
-    };
-  };
-
   i18n.defaultLocale = "en_GB.UTF-8";
   console.keyMap = "us";
 

@@ -17,10 +17,13 @@
       ];
       networks = ["miniflux"];
       ports = ["127.0.0.1:8080:8080"];
+      extraOptions = [
+        "--health-cmd=/usr/bin/miniflux -healthcheck auto"
+      ];
     };
 
     miniflux-db = {
-      image = "postgres@sha256:b40d931bd0e7ce6eecc59a5a6ac3b3c04a01e559750e73e7086b6dbd7f8bf545";
+      image = "postgres@sha256:ff4ccc02b97e0ebb6b328ef9ff92522f95586f83be6801896b615088defc8ad2";
       podman = {
         user = "miniflux";
         sdnotify = "healthy";
@@ -33,7 +36,7 @@
         config.age.secrets.miniflux_db_env.path
       ];
       volumes = [
-        "/var/lib/miniflux/postgresql:/var/lib/postgresql"
+        "miniflux-db:/var/lib/postgresql/data"
       ];
       networks = ["miniflux"];
       extraOptions = [
@@ -62,19 +65,32 @@
       linger = true;
       uid = 19621;
       group = "miniflux";
+      home = "/var/lib/miniflux";
+      createHome = true;
+      subUidRanges = [
+        {
+          startUid = 165536;
+          count = 65536;
+        }
+      ];
+      subGidRanges = [
+        {
+          startGid = 165536;
+          count = 65536;
+        }
+      ];
     };
     groups.miniflux = {};
   };
-
-  systemd.tmpfiles.rules = [
-    "d /var/lib/miniflux/postgresql 0750 miniflux miniflux -"
-  ];
 
   systemd.services.init-miniflux-network = {
     description = "Creates Podman network for Miniflux containers";
     after = ["network.target"];
     wantedBy = ["multi-user.target"];
-    serviceConfig.Type = "oneshot";
+    serviceConfig = {
+      Type = "oneshot";
+      User = "miniflux";
+    };
     path = [config.virtualisation.podman.package];
     script = ''
       podman network exists miniflux || podman network create miniflux
