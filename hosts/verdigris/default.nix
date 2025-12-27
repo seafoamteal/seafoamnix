@@ -1,7 +1,6 @@
 {
   pkgs,
   config,
-  env,
   ...
 }: {
   imports = [
@@ -50,6 +49,22 @@
         '';
       };
     };
+  };
+
+  services.dnsmasq = {
+    enable = true;
+    settings = {
+      interface = "tailscale0";
+      bind-interfaces = true;
+      address = "/hari.pm/100.113.128.75";
+      no-resolv = true;
+      server = ["1.1.1.1" "1.0.0.1"];
+    };
+  };
+
+  systemd.services.dnsmasq = {
+    after = ["tailscaled.service"];
+    wants = ["tailscaled.service"];
   };
 
   systemd.network = {

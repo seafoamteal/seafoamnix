@@ -19,6 +19,8 @@
   time.timeZone = "Europe/Berlin";
   system.stateVersion = "25.05";
 
+  networking.firewall.allowedTCPPorts = [80 443];
+
   services.caddy = {
     virtualHosts = {
       "haripm.com" = {
