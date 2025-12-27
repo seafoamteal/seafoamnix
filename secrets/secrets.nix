@@ -6,4 +6,12 @@ in {
     publicKeys = [hari verdigris];
     armor = true;
   };
+  "miniflux_env.age" = {
+    publicKeys = [hari verdigris];
+    armor = true;
+  };
+  "miniflux_db_env.age" = {
+    publicKeys = [hari verdigris];
+    armor = true;
+  };
 }

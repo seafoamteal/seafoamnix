@@ -9,6 +9,7 @@
     ../../modules/nixos
     ../../modules/nixos/platforms/server.nix
     ../../modules/nixos/services/caddy.nix
+    ./containers
   ];
 
   boot = {
@@ -46,6 +47,12 @@
       "hari.pm" = {
         extraConfig = ''
           respond "Hi, Hari!" 200
+        '';
+      };
+
+      "rss.hari.pm" = {
+        extraConfig = ''
+          reverse_proxy 127.0.0.1:8080
         '';
       };
     };
