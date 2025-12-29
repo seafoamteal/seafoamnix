@@ -1,6 +1,7 @@
 {...}: {
   imports = [
     ./miniflux.nix
+    ./forgejo.nix
   ];
 
   virtualisation = {

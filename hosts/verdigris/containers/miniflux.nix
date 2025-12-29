@@ -67,18 +67,7 @@
       group = "miniflux";
       home = "/var/lib/miniflux";
       createHome = true;
-      subUidRanges = [
-        {
-          startUid = 165536;
-          count = 65536;
-        }
-      ];
-      subGidRanges = [
-        {
-          startGid = 165536;
-          count = 65536;
-        }
-      ];
+      autoSubUidGidRange = true;
     };
     groups.miniflux = {};
   };
