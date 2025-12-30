@@ -1,7 +1,7 @@
 {config, ...}: {
   virtualisation.oci-containers.containers = {
     miniflux = {
-      image = "miniflux/miniflux@sha256:9a1f95a7a05b77040d19bb7be96194af4c222de02fb84165fb808f65700c064f";
+      image = "miniflux/miniflux:2.2.15@sha256:9a1f95a7a05b77040d19bb7be96194af4c222de02fb84165fb808f65700c064f";
       podman = {
         user = "miniflux";
         sdnotify = "healthy";

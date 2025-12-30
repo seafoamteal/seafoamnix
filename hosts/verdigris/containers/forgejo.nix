@@ -3,8 +3,7 @@
 {pkgs, ...}: {
   virtualisation.oci-containers.containers = {
     forgejo = {
-      # forgejo:13
-      image = "codeberg.org/forgejo/forgejo@sha256:88858e7f592f82d4f650713c7bed8c0cd792d7f71475a7467c5650a31cd2eda9";
+      image = "codeberg.org/forgejo/forgejo:13@sha256:88858e7f592f82d4f650713c7bed8c0cd792d7f71475a7467c5650a31cd2eda9";
       podman = {
         user = "git";
         sdnotify = "healthy";
