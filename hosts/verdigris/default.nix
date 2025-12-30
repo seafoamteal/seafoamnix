@@ -61,6 +61,12 @@
           reverse_proxy 127.0.0.1:3000
         '';
       };
+
+      "links.hari.pm" = {
+        extraConfig = ''
+          reverse_proxy 127.0.0.1:9090
+        '';
+      };
     };
   };
 

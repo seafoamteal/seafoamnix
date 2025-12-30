@@ -2,6 +2,7 @@
   imports = [
     ./miniflux.nix
     ./forgejo.nix
+    ./linkding.nix
   ];
 
   virtualisation = {

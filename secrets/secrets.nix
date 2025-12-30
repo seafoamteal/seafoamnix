@@ -14,4 +14,8 @@ in {
     publicKeys = [hari verdigris];
     armor = true;
   };
+  "linkding_env.age" = {
+    publicKeys = [hari verdigris];
+    armor = true;
+  };
 }
