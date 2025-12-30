@@ -2,7 +2,6 @@
   imports = [
     ./miniflux.nix
     ./forgejo.nix
-    ./actualbudget.nix
   ];
 
   virtualisation = {
