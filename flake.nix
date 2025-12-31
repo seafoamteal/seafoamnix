@@ -84,6 +84,15 @@
           agenix.nixosModules.default
         ];
       };
+
+      cyan = createSystem {
+        host = "cyan";
+        user = "hari";
+        platform = "server";
+        optionalModules = [
+          disko.nixosModules.disko
+        ];
+      };
     };
   };
 }
