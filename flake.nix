@@ -91,6 +91,7 @@
         platform = "server";
         optionalModules = [
           disko.nixosModules.disko
+          agenix.nixosModules.default
         ];
       };
     };

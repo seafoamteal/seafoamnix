@@ -21,6 +21,64 @@
     };
   };
 
+  age.secrets = {
+    forgejo_token.file = ../../secrets/forgejo_token.age;
+  };
+
+  services.gitea-actions-runner = {
+    package = pkgs.forgejo-runner;
+    instances.cyan = {
+      enable = true;
+      name = "cyan";
+      tokenFile = config.age.secrets.forgejo_token.path;
+      url = "https://git.hari.pm";
+      labels = [
+        "debian-latest:docker://node:24-trixie"
+        "ubuntu-latest:docker://node:24-trixie"
+        "nixos-latest:docker://nixos/nix:latest"
+      ];
+      settings = {
+        log = {
+          level = "info";
+          job_level = "info";
+        };
+
+        runner = {
+          file = ".runner";
+          capacity = 1;
+          timeout = "3h";
+          shutdown_timeout = "3h";
+          insecure = false;
+          fetch_timeout = "5s";
+          fetch_interval = "2s";
+          report_interval = "1s";
+        };
+
+        # cache = {};
+
+        container = {
+          network = "";
+          enable_ipv6 = true;
+          privileged = false;
+          options = "";
+          workdir_parent = "";
+          valid_volumes = [];
+          docker_host = "-";
+          force_pull = false;
+          force_rebuild = false;
+        };
+      };
+    };
+  };
+
+  virtualisation.docker = {
+    enable = true;
+    daemon.settings = {
+      fixed-cidr-v6 = "fd00::/80";
+      ipv6 = true;
+    };
+  };
+
   networking = {
     hostName = "cyan";
     networkmanager = {
